@@ -1017,4 +1017,5 @@ public class DiscordWebhooks
     public string? ReportAndCalladminWebhook { get; set; }
     public string? ReportAndCalladminWebhookMentionUserId { get; set; }
     public string? ServerAddress { get; set; }
+    public string? ServerPassword { get; set; }
 }
