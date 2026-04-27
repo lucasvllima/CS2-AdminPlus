@@ -95,6 +95,7 @@ public static class Discord
     private static string ReportAndCalladminWebhook = "";
     private static string ReportAndCalladminWebhookMentionUserId = "";
     public static string ConfiguredServerAddress = "";
+    public static string ConfiguredServerPassword = "";
     private static Timer? _statusTimer;
 
     public static void LoadConfig()
@@ -124,6 +125,7 @@ public static class Discord
                     ReportAndCalladminWebhook = config.DiscordWebhooks.ReportAndCalladminWebhook ?? "";
                     ReportAndCalladminWebhookMentionUserId = config.DiscordWebhooks.ReportAndCalladminWebhookMentionUserId ?? "@everyone";
                     ConfiguredServerAddress = config.DiscordWebhooks.ServerAddress ?? "";
+                    ConfiguredServerPassword = config.DiscordWebhooks.ServerPassword ?? "";
                 }
                 else
                 {
@@ -153,7 +155,8 @@ public static class Discord
                     ChatLogsWebhook = "",
                     ReportAndCalladminWebhook = "",
                     ReportAndCalladminWebhookMentionUserId = "@everyone",
-                    ServerAddress = ""
+                    ServerAddress = "",
+                    ServerPassword = ""
                 }
             };
             
@@ -171,6 +174,15 @@ public static class Discord
         catch (Exception)
         {
         }
+    }
+
+    private static string GetConnectUrl(string serverIp)
+    {
+        if (string.IsNullOrEmpty(ConfiguredServerPassword))
+        {
+            return $"steam://connect/{serverIp}";
+        }
+        return $"steam://connect/{serverIp}/{ConfiguredServerPassword}";
     }
 
     public static async Task SendCommunicationLog(string playerName, ulong playerSteamId, string adminName, ulong adminSteamId, string reason, int duration, string actionType, bool isApplied, AdminPlus plugin)
@@ -530,7 +542,7 @@ public static class Discord
                     {
                         new { name = $"🗺️ {plugin.Localizer["Discord.ServerStatus.Map"].Value}", value = $"```ansi\n\u001b[2;31m{currentMap}\u001b[0m\n```", inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.Players"].Value, value = $"```ansi\n\u001b[2;32m{playerCount}\u001b[0m/\u001b[2;37m{maxPlayers}\u001b[0m\n```", inline = true },
-                        new { name = plugin.Localizer["Discord.ServerStatus.ServerIP"].Value, value = $"**[{serverIp}](steam://connect/{serverIp})**", inline = false },
+                        new { name = plugin.Localizer["Discord.ServerStatus.ServerIP"].Value, value = $"**[{serverIp}]({GetConnectUrl(serverIp)})**", inline = false },
                         new { name = plugin.Localizer["Discord.ServerStatus.CTTeam"].Value, value = ctNames, inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.TTeam"].Value, value = tNames, inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.OnlineAdmin"].Value, value = $"```ansi\n\u001b[2;35m👑 {onlineAdmins} {plugin.Localizer["Discord.ServerStatus.AdminCount"].Value}\u001b[0m\n```", inline = true },
@@ -757,7 +769,7 @@ public static class Discord
                             new
                             {
                                 name = plugin.Localizer["Discord.Report.DirectConnect"].Value,
-                                value = $"**[`connect {serverIp}`]** - {plugin.Localizer["Discord.Report.ClickToConnect"].Value}",
+                                value = $"**[`connect {serverIp}`]** - [{plugin.Localizer["Discord.Report.ClickToConnect"].Value}]({GetConnectUrl(serverIp)})",
                                 inline = false
                             }
                         },
