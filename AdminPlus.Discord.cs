@@ -530,30 +530,13 @@ public static class Discord
                     {
                         new { name = $"🗺️ {plugin.Localizer["Discord.ServerStatus.Map"].Value}", value = $"```ansi\n\u001b[2;31m{currentMap}\u001b[0m\n```", inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.Players"].Value, value = $"```ansi\n\u001b[2;32m{playerCount}\u001b[0m/\u001b[2;37m{maxPlayers}\u001b[0m\n```", inline = true },
-                        new { name = plugin.Localizer["Discord.ServerStatus.ServerIP"].Value, value = $"```ansi\n\u001b[2;36m{serverIp}\u001b[0m\n```", inline = false },
+                        new { name = plugin.Localizer["Discord.ServerStatus.ServerIP"].Value, value = $"**[{serverIp}](steam://connect/{serverIp})**", inline = false },
                         new { name = plugin.Localizer["Discord.ServerStatus.CTTeam"].Value, value = ctNames, inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.TTeam"].Value, value = tNames, inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.OnlineAdmin"].Value, value = $"```ansi\n\u001b[2;35m👑 {onlineAdmins} {plugin.Localizer["Discord.ServerStatus.AdminCount"].Value}\u001b[0m\n```", inline = true },
                     },
                     footer = new { text = plugin.Localizer["Discord.ServerStatus.Footer"].Value },
                     timestamp = DateTime.UtcNow
-                }
-            },
-            components = new[]
-            {
-                new
-                {
-                    type = 1,
-                    components = new[]
-                    {
-                        new
-                        {
-                            type = 2,
-                            style = 5,
-                            label = plugin.Localizer["Discord.ServerStatus.Connect"].Value,
-                            url = $"steam://connect/{serverIp}"
-                        }
-                    }
                 }
             }
         };
@@ -780,26 +763,9 @@ public static class Discord
                         },
                         footer = new { text = plugin.Localizer["Discord.Report.Footer"].Value },
                         timestamp = DateTime.UtcNow
-                        }
-                        },
-                        components = new[]
-                        {
-                        new
-                        {
-                        type = 1,
-                        components = new[]
-                        {
-                            new
-                            {
-                                type = 2,
-                                style = 5,
-                                label = plugin.Localizer["Discord.ServerStatus.Connect"].Value,
-                                url = $"steam://connect/{serverIp}"
-                            }
-                        }
-                        }
-                        }
-                        };
+                    }
+                }
+            };
             await SendMessageWithFallback("reports", embedObject);
         }
         catch (Exception)
