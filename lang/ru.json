@@ -654,5 +654,5 @@
   "Report.Reason.Griefing": "Грифинг / Саботаж команды",
   "Report.Reason.Spam": "Спам / Флуд",
   "Report.Reason.Other": "Другое",
-  "Discord.ServerStatus.Connect": "Подключиться к серверу"
+  "Discord.ServerStatus.Connect": "Подключиться"
 }

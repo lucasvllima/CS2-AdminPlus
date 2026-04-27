@@ -654,5 +654,5 @@
   "Report.Reason.Griefing": "Oyunu sabote etme",
   "Report.Reason.Spam": "Spam / Flood",
   "Report.Reason.Other": "Diğer",
-  "Discord.ServerStatus.Connect": "Sunucuya Bağlan"
+  "Discord.ServerStatus.Connect": "Bağlan"
 }

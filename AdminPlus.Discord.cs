@@ -543,7 +543,7 @@ public static class Discord
                         new { name = $"🗺️ {plugin.Localizer["Discord.ServerStatus.Map"].Value}", value = $"```ansi\n\u001b[2;31m{currentMap}\u001b[0m\n```", inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.Players"].Value, value = $"```ansi\n\u001b[2;32m{playerCount}\u001b[0m/\u001b[2;37m{maxPlayers}\u001b[0m\n```", inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.ServerIP"].Value, value = $"```ansi\n\u001b[2;36m{serverIp}\u001b[0m\n```", inline = false },
-                        new { name = $"🔗 {plugin.Localizer["Discord.ServerStatus.Connect"].Value}", value = $"[{plugin.Localizer["Discord.ServerStatus.Connect"].Value}]({GetConnectUrl(serverIp)})", inline = false },
+                        new { name = "🔗 Link", value = $"**[{plugin.Localizer["Discord.ServerStatus.Connect"].Value}]({GetConnectUrl(serverIp)})**", inline = false },
                         new { name = plugin.Localizer["Discord.ServerStatus.CTTeam"].Value, value = ctNames, inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.TTeam"].Value, value = tNames, inline = true },
                         new { name = plugin.Localizer["Discord.ServerStatus.OnlineAdmin"].Value, value = $"```ansi\n\u001b[2;35m👑 {onlineAdmins} {plugin.Localizer["Discord.ServerStatus.AdminCount"].Value}\u001b[0m\n```", inline = true },

@@ -654,5 +654,5 @@
   "Report.Reason.Griefing": "Griefing / Sabotagem de equipe",
   "Report.Reason.Spam": "Spam / Flood",
   "Report.Reason.Other": "Outro",
-  "Discord.ServerStatus.Connect": "Conectar ao Servidor"
+  "Discord.ServerStatus.Connect": "Conectar"
 }
