@@ -202,14 +202,20 @@ Discord entegrasyonu için `csgo/addons/counterstrikesharp/plugins/AdminPlus/dis
     "connectionLogsWebhook": "https://discord.com/api/webhooks/0123456789/vwx567yza890",
     "chatLogsWebhook": "https://discord.com/api/webhooks/0123456789/bcd123efg456",
     "reportAndCalladminWebhook": "https://discord.com/api/webhooks/0123456789/hij789klm012",
-    "reportAndCalladminWebhookMentionUserId": "@everyone"
+    "reportAndCalladminWebhookMentionUserId": "@everyone",
+    "serverAddress": "your-server-ip:port",
+    "serverPassword": "your-password"
   }
 }
 ```
 
 **⚠️ Açıklama / Description:**
 - 🇹🇷 Her webhook URL'nizi Discord Kanal Ayarları > Entegrasyonlar > Webhooks bölümünden kopyalayabilirsiniz.
+- 🇹🇷 **serverAddress**: Discord mesajlarında gösterilecek özel sunucu adresi (İsteğe bağlı).
+- 🇹🇷 **serverPassword**: Discord bağlantı linklerinde kullanılacak sunucu şifresi (İsteğe bağlı, mesajda görünmez).
 - 🇺🇸 You can copy your webhook URLs from Discord Channel Settings > Integrations > Webhooks section.
+- 🇺🇸 **serverAddress**: Custom server address to display in Discord messages (Optional).
+- 🇺🇸 **serverPassword**: Server password to use in Discord connect links (Optional, hidden from message content).
 
 #### 📊 Discord Webhook Kanal Bilgilendirmesi:
 - **🔨 banWebhook**: 
