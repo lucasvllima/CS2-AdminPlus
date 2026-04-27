@@ -653,5 +653,6 @@
   "Report.Reason.Toxic": "Comportamento toxico",
   "Report.Reason.Griefing": "Griefing / Sabotagem de equipe",
   "Report.Reason.Spam": "Spam / Flood",
-  "Report.Reason.Other": "Outro"
+  "Report.Reason.Other": "Outro",
+  "Discord.ServerStatus.Connect": "Conectar ao Servidor"
 }

@@ -94,6 +94,7 @@ public static class Discord
     private static string ChatLogsWebhook = "";
     private static string ReportAndCalladminWebhook = "";
     private static string ReportAndCalladminWebhookMentionUserId = "";
+    public static string ConfiguredServerAddress = "";
     private static Timer? _statusTimer;
 
     public static void LoadConfig()
@@ -122,7 +123,7 @@ public static class Discord
                     ChatLogsWebhook = config.DiscordWebhooks.ChatLogsWebhook ?? "";
                     ReportAndCalladminWebhook = config.DiscordWebhooks.ReportAndCalladminWebhook ?? "";
                     ReportAndCalladminWebhookMentionUserId = config.DiscordWebhooks.ReportAndCalladminWebhookMentionUserId ?? "@everyone";
-                    
+                    ConfiguredServerAddress = config.DiscordWebhooks.ServerAddress ?? "";
                 }
                 else
                 {
@@ -151,7 +152,8 @@ public static class Discord
                     ConnectionLogsWebhook = "",
                     ChatLogsWebhook = "",
                     ReportAndCalladminWebhook = "",
-                    ReportAndCalladminWebhookMentionUserId = "@everyone"
+                    ReportAndCalladminWebhookMentionUserId = "@everyone",
+                    ServerAddress = ""
                 }
             };
             
@@ -537,6 +539,23 @@ public static class Discord
                     timestamp = DateTime.UtcNow
                 }
             },
+            components = new[]
+            {
+                new
+                {
+                    type = 1,
+                    components = new[]
+                    {
+                        new
+                        {
+                            type = 2,
+                            style = 5,
+                            label = plugin.Localizer["Discord.ServerStatus.Connect"].Value,
+                            url = $"steam://connect/{serverIp}"
+                        }
+                    }
+                }
+            }
         };
 
         try
@@ -761,10 +780,26 @@ public static class Discord
                         },
                         footer = new { text = plugin.Localizer["Discord.Report.Footer"].Value },
                         timestamp = DateTime.UtcNow
-                    }
-                }
-            };
-
+                        }
+                        },
+                        components = new[]
+                        {
+                        new
+                        {
+                        type = 1,
+                        components = new[]
+                        {
+                            new
+                            {
+                                type = 2,
+                                style = 5,
+                                label = plugin.Localizer["Discord.ServerStatus.Connect"].Value,
+                                url = $"steam://connect/{serverIp}"
+                            }
+                        }
+                        }
+                        }
+                        };
             await SendMessageWithFallback("reports", embedObject);
         }
         catch (Exception)
@@ -1003,4 +1038,5 @@ public class DiscordWebhooks
     public string? ChatLogsWebhook { get; set; }
     public string? ReportAndCalladminWebhook { get; set; }
     public string? ReportAndCalladminWebhookMentionUserId { get; set; }
+    public string? ServerAddress { get; set; }
 }
